@@ -1,0 +1,216 @@
+package me.AppleTechOnline.Stuff;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class inv extends JavaPlugin implements Listener {
+	
+	public static Inventory swag = Bukkit.createInventory(null, 27, ChatColor.DARK_PURPLE + "Hats!");
+	public void onEnable(){
+		Bukkit.getPluginManager().registerEvents(this, this);
+	}
+	
+
+
+
+	
+		
+		
+		static{
+		ItemStack Is = new ItemStack(Material.DIAMOND_HELMET);
+		ItemMeta Im = Is.getItemMeta();
+		Im.setDisplayName("§bMore Comming soon");
+		Is.setItemMeta(Im);
+		
+		swag.setItem(0, new ItemStack(Material.TNT, 1));
+		swag.setItem(1, new ItemStack(Material.MOB_SPAWNER, 1));
+		swag.setItem(2, new ItemStack(Material.REDSTONE_ORE));
+		swag.setItem(3, new ItemStack(Material.DIAMOND_ORE));
+		swag.setItem(4, new ItemStack(Material.REDSTONE_BLOCK));
+		swag.setItem(5, new ItemStack(Material.GOLD_BLOCK));
+		swag.setItem(6, new ItemStack(Material.ANVIL));
+		swag.setItem(7, new ItemStack(Material.BOOKSHELF));
+		swag.setItem(8, new ItemStack(Material.BEDROCK));
+		swag.setItem(9, new ItemStack(Material.CACTUS));
+		swag.setItem(10, new ItemStack(Material.BEACON));
+		swag.setItem(11, new ItemStack(Is));
+		
+		
+
+		
+		
+		
+		
+		
+	 }
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if(cmd.getName().equalsIgnoreCase("hats")) {
+			Player player = (Player) sender;
+			if(player.hasPermission("Apple.Hats")){
+			player.openInventory(swag);
+			}
+		
+		}
+		
+		
+		
+		
+		return false;
+		
+			
+		}
+	
+	
+	
+	ItemStack TNT = new ItemStack(Material.TNT);
+	ItemStack ms = new ItemStack(Material.MOB_SPAWNER);
+	ItemStack Ro = new ItemStack(Material.REDSTONE_ORE);
+	ItemStack Do = new ItemStack(Material.DIAMOND_ORE);
+	ItemStack Rb = new ItemStack(Material.REDSTONE_BLOCK);
+	ItemStack Gb = new ItemStack(Material.GOLD_BLOCK);
+	ItemStack A = new ItemStack(Material.ANVIL);
+	ItemStack Bs = new ItemStack(Material.BOOKSHELF);
+	ItemStack Bed = new ItemStack(Material.BEDROCK);
+	ItemStack Cac = new ItemStack(Material.CACTUS);
+	ItemStack Beac = new ItemStack(Material.BEACON);
+	
+	
+	@EventHandler
+	public void onInventoryClick(InventoryClickEvent e) {
+		Player p = (Player) e.getWhoClicked();
+		if(!e.getInventory().getName().equalsIgnoreCase(swag.getName())) return;
+		if(e.getCurrentItem().getType().equals(Material.TNT)){
+			e.setCancelled(true);
+			e.getWhoClicked().getInventory().setHelmet(TNT);
+			p.sendMessage("§6You have successfully Choose a hat! ");
+			p.closeInventory();
+		}
+		if(e.getCurrentItem().getType().equals(Material.MOB_SPAWNER)){
+			e.setCancelled(true);
+			e.getWhoClicked().getInventory().setHelmet(ms);
+			p.sendMessage("§6You have successfully Choose a hat! ");
+			p.closeInventory();
+		}
+		if(e.getCurrentItem().getType().equals(Material.REDSTONE_ORE)){
+			e.setCancelled(true);
+			e.getWhoClicked().getInventory().setHelmet(Ro);
+			p.sendMessage("§6You have successfully Choose a hat! ");
+			p.closeInventory();
+		}
+		if(e.getCurrentItem().getType().equals(Material.DIAMOND_ORE)){
+			e.setCancelled(true);
+			e.getWhoClicked().getInventory().setHelmet(Do);
+			p.sendMessage("§6You have successfully Choose a hat! ");
+			p.closeInventory();
+		}
+		if(e.getCurrentItem().getType().equals(Material.REDSTONE_BLOCK)){
+			e.setCancelled(true);
+			e.getWhoClicked().getInventory().setHelmet(Rb);
+			p.sendMessage("§6You have successfully Choose a hat! ");
+			p.closeInventory();
+		}
+		if(e.getCurrentItem().getType().equals(Material.GOLD_BLOCK)){
+			e.setCancelled(true);
+			e.getWhoClicked().getInventory().setHelmet(Gb);
+			p.sendMessage("§6You have successfully Choose a hat! ");
+			p.closeInventory();
+		}
+		if(e.getCurrentItem().getType().equals(Material.ANVIL)){
+			e.setCancelled(true);
+			e.getWhoClicked().getInventory().setHelmet(A);
+			p.sendMessage("§6You have successfully Choose a hat! ");
+			p.closeInventory();
+		}
+		if(e.getCurrentItem().getType().equals(Material.BOOKSHELF)){
+			e.setCancelled(true);
+			e.getWhoClicked().getInventory().setHelmet(Bs);
+			p.sendMessage("§6You have successfully Choose a hat! ");
+			p.closeInventory();
+		}
+		if(e.getCurrentItem().getType().equals(Material.BEDROCK)){
+			e.setCancelled(true);
+			e.getWhoClicked().getInventory().setHelmet(Bed);
+			p.sendMessage("§6You have successfully Choose a hat! ");
+			p.closeInventory();
+		}
+		if(e.getCurrentItem().getType().equals(Material.CACTUS)){
+			e.setCancelled(true);
+			e.getWhoClicked().getInventory().setHelmet(Cac);
+			p.sendMessage("§6You have successfully Choose a hat! ");
+			p.closeInventory();
+		}
+		if(e.getCurrentItem().getType().equals(Material.BEACON)){
+			e.setCancelled(true);
+			e.getWhoClicked().getInventory().setHelmet(Beac);
+			p.sendMessage("§6You have successfully Choose a hat! ");
+			p.closeInventory();
+		}
+		
+		
+		
+		
+		e.setCancelled(true);
+		}
+	@EventHandler
+	public void onJoin(PlayerJoinEvent e){
+		
+		e.getPlayer().getInventory().clear();
+		
+		
+		ItemStack Hats = new ItemStack(Material.DIAMOND_HELMET, 1);
+		ItemMeta Hatsm = Hats.getItemMeta();
+		Hatsm.setDisplayName(ChatColor.GREEN + "Hats");
+		Hats.setItemMeta(Hatsm);
+		
+		
+		ItemStack Part = new ItemStack(Material.APPLE, 1);
+		ItemMeta Partm = Part.getItemMeta();
+		Partm.setDisplayName(ChatColor.GOLD + "Particles Menu (VIP ONLY)");
+		Part.setItemMeta(Partm);
+		
+		
+		
+		
+		e.getPlayer().getInventory().addItem(new ItemStack(Hats));
+		
+		e.getPlayer().getInventory().addItem(new ItemStack(Part));
+		
+		e.getPlayer().chat("/pet selector");
+	}
+	
+	@EventHandler(priority=EventPriority.HIGH)
+	public void onPlayerUse(PlayerInteractEvent event){
+	    Player p = event.getPlayer();
+	 
+	    if(p.getItemInHand().getType() == Material.DIAMOND_HELMET){
+	    	p.chat("/hats");
+	    }
+	    if(p.getItemInHand().getType() == Material.APPLE){
+	    	p.chat("/particles");
+	    }
+	    }
+
+			
+			
+		
+	
+		
+	
+		
+
+}
