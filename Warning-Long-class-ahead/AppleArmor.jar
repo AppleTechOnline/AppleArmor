@@ -33,13 +33,13 @@ public class Armor extends JavaPlugin implements Listener {
 	public Stuff plugin;
 	
 	public static Inventory armor = Bukkit.createInventory(null, 45, ChatColor.GREEN + "Armor!");
+	
 	public void onEnable(){
 		Bukkit.getPluginManager().registerEvents(this, this);
 	}
 	
 	static {
 		
-	
 		ItemStack a5 = new ItemStack(Material.CHAINMAIL_HELMET);
 		ItemMeta a5m = a5.getItemMeta();
 		a5m.setDisplayName("§6Chainmail Armor");
@@ -89,11 +89,6 @@ public class Armor extends JavaPlugin implements Listener {
 		a4m.setDisplayName("§bColor Changing Armor");
 		a4m.setLore(Arrays.asList("§5Sparkly"));
 		a4.setItemMeta(a4m);
-		
-		
-		
-		
-		
 		
 		ItemStack a9 = new ItemStack(Material.IRON_HELMET);
 		ItemMeta a9m = a9.getItemMeta();
@@ -184,30 +179,18 @@ public class Armor extends JavaPlugin implements Listener {
 		a22m.setLore(Arrays.asList("§4Coming Soon"));
 		a22.setItemMeta(a22m);
 		
-		
-		
-		
-		
-		
-		
 		armor.setItem(44, a21);
 		armor.setItem(43, a22);
-		
-		
-		
 		
 		armor.setItem(2, new ItemStack(a5));
 		armor.setItem(11, new ItemStack(a6));
 		armor.setItem(20, new ItemStack(a7));
 		armor.setItem(29, new ItemStack(a8));
 		
-		
 		armor.setItem(3, new ItemStack(a1));
 		armor.setItem(12, new ItemStack(a2));
 		armor.setItem(21, new ItemStack(a3));
 		armor.setItem(30, new ItemStack(a3));
-		
-		
 		
 		armor.setItem(4, new ItemStack(a9));
 		armor.setItem(13, new ItemStack(a10));
@@ -230,8 +213,8 @@ public class Armor extends JavaPlugin implements Listener {
 		if(cmd.getName().equalsIgnoreCase("armor")) {
 			
 			Player player = (Player) sender;
-			if(player.hasPermission("Apple.Armor") || player.isOp()){
-			player.openInventory(armor);
+			if(player.hasPermission("Apple.Armor") || player.isOp()) {
+			    player.openInventory(armor);
 			}
 			else{
 				player.sendMessage("§4I'm Sorry, But you you dont have permissions to open this!");
@@ -307,242 +290,104 @@ public class Armor extends JavaPlugin implements Listener {
 	public void onInventoryClick(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
 		
+		// Prevent the event
 		e.setCancelled(true);
-		if(!e.getInventory().getName().equalsIgnoreCase(armor.getName())) return;
-		if(e.getCurrentItem().getType().equals(Material.LEATHER_HELMET)){
-			e.setCancelled(true);
-			ItemStack[] stacks = RandomizeLeatherColor();
-			e.getWhoClicked().getInventory().setHelmet(stacks[0]);
-			e.getWhoClicked().getInventory().setChestplate(stacks[1]);
-			e.getWhoClicked().getInventory().setLeggings(stacks[2]);
-			e.getWhoClicked().getInventory().setBoots(stacks[3]);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Leather Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
+		
+		if(!e.getInventory().getName().equalsIgnoreCase(armor.getName())) {
+		    return;
+        }
+        
+        switch(e.getCurrentItem().getType()) {
+        
+            // Leather Armor
+            case Material.LEATHER_HELMET:
+            case Material.LEATHER_CHESTPLATE:
+            case Material.LEATHER_LEGGINGS:
+            case Material.LEATHER_BOOTS:
+                ItemStack[] stacks = RandomizeLeatherColor();
+    			e.getWhoClicked().getInventory().setHelmet(stacks[0]);
+    			e.getWhoClicked().getInventory().setChestplate(stacks[1]);
+    			e.getWhoClicked().getInventory().setLeggings(stacks[2]);
+    			e.getWhoClicked().getInventory().setBoots(stacks[3]);
+    			
+    			p.sendMessage("§6You are now using §9Leather Armor");
+    			break;
+    
+            // Iron Armor
+            case Material.IRON_HELMET:
+            case Material.IRON_CHESTPLATE:
+            case Material.IRON_LEGGINGS:
+            case Material.IRON_BOOTS:
+                e.getWhoClicked().getInventory().setHelmet(IH);
+    			e.getWhoClicked().getInventory().setChestplate(IC);
+    			e.getWhoClicked().getInventory().setLeggings(IL);
+    			e.getWhoClicked().getInventory().setBoots(IB);
+    			
+    			p.sendMessage("§6You are now using §9Iron Armor");
+    			break;
+    			
+            // Diamond Armor
+            case Material.DIAMOND_HELMET:
+            case Material.DIAMOND_CHESTPLATE:
+            case Material.DIAMOND_LEGGINGS:
+            case Material.DIAMOND_BOOTS:
+                e.getWhoClicked().getInventory().setHelmet(DH);
+    			e.getWhoClicked().getInventory().setChestplate(DC);
+    			e.getWhoClicked().getInventory().setLeggings(DL);
+    			e.getWhoClicked().getInventory().setBoots(DB);
+    			
+    			p.sendMessage("§6You are now using §9Diamond Armor");
+    			break;
+    			
+            // Chainmail Armor
+            case Material.CHAINMAIL_HELMET:
+            case Material.CHAINMAIL_CHESTPLATE:
+            case Material.CHAINMAIL_LEGGINGS:
+            case Material.CHAINMAIL_BOOTS:
+                e.getWhoClicked().getInventory().setHelmet(CH);
+    			e.getWhoClicked().getInventory().setChestplate(CC);
+    			e.getWhoClicked().getInventory().setLeggings(CL);
+    			e.getWhoClicked().getInventory().setBoots(CB);
+    			
+    			p.sendMessage("§6You are now using §7Chainmail Armor");
+    			break;
+    			
+            // Gold armor
+            case Material.GOLD_HELMET:
+            case Material.GOLD_CHESTPLATE:
+            case Material.GOLD_LEGGINGS:
+            case Material.GOLD_BOOTS:
+                e.getWhoClicked().getInventory().setHelmet(GH);
+    			e.getWhoClicked().getInventory().setChestplate(GC);
+    			e.getWhoClicked().getInventory().setLeggings(GL);
+    			e.getWhoClicked().getInventory().setBoots(GB);
+    			
+    			p.sendMessage("§6You are now using §eGold Armor");
+    			break;
+    			
+            case Material.INK_SACK:
+                p.sendMessage("§6This feature is still in development! Please check @AppleTechOnline For updates.");
+                break;
+                
+            case Material.WOOL:
+                e.getWhoClicked().openInventory(Stuff.Lc);
+                break;
+                
+            default:
+                // @TODO: Throw a message that the selection was incorrect.
+                break;
+        }
+        
+        p.closeInventory();
+        p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);	
 	}
-		if(e.getCurrentItem().getType().equals(Material.LEATHER_CHESTPLATE)){
-			e.setCancelled(true);
-			ItemStack[] stacks = RandomizeLeatherColor();
-			e.getWhoClicked().getInventory().setHelmet(stacks[0]);
-			e.getWhoClicked().getInventory().setChestplate(stacks[1]);
-			e.getWhoClicked().getInventory().setLeggings(stacks[2]);
-			e.getWhoClicked().getInventory().setBoots(stacks[3]);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Leather Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-		}
-		if(e.getCurrentItem().getType().equals(Material.LEATHER_LEGGINGS)){
-			e.setCancelled(true);
-			ItemStack[] stacks = RandomizeLeatherColor();
-			e.getWhoClicked().getInventory().setHelmet(stacks[0]);
-			e.getWhoClicked().getInventory().setChestplate(stacks[1]);
-			e.getWhoClicked().getInventory().setLeggings(stacks[2]);
-			e.getWhoClicked().getInventory().setBoots(stacks[3]);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Leather Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-		}
-		if(e.getCurrentItem().getType().equals(Material.LEATHER_BOOTS)){
-			e.setCancelled(true);
-			ItemStack[] stacks = RandomizeLeatherColor();
-			e.getWhoClicked().getInventory().setHelmet(stacks[0]);
-			e.getWhoClicked().getInventory().setChestplate(stacks[1]);
-			e.getWhoClicked().getInventory().setLeggings(stacks[2]);
-			e.getWhoClicked().getInventory().setBoots(stacks[3]);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Leather Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-		}
-		if(e.getCurrentItem().getType().equals(Material.IRON_HELMET)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(IH);
-			e.getWhoClicked().getInventory().setChestplate(IC);
-			e.getWhoClicked().getInventory().setLeggings(IL);
-			e.getWhoClicked().getInventory().setBoots(IB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Iron Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-		}
-		if(e.getCurrentItem().getType().equals(Material.IRON_CHESTPLATE)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(IH);
-			e.getWhoClicked().getInventory().setChestplate(IC);
-			e.getWhoClicked().getInventory().setLeggings(IL);
-			e.getWhoClicked().getInventory().setBoots(IB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Iron Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-		}
-		if(e.getCurrentItem().getType().equals(Material.IRON_LEGGINGS)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(IH);
-			e.getWhoClicked().getInventory().setChestplate(IC);
-			e.getWhoClicked().getInventory().setLeggings(IL);
-			e.getWhoClicked().getInventory().setBoots(IB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Iron Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-		}
-		if(e.getCurrentItem().getType().equals(Material.IRON_BOOTS)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(IH);
-			e.getWhoClicked().getInventory().setChestplate(IC);
-			e.getWhoClicked().getInventory().setLeggings(IL);
-			e.getWhoClicked().getInventory().setBoots(IB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Iron Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-		}
-		if(e.getCurrentItem().getType().equals(Material.DIAMOND_HELMET)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(DH);
-			e.getWhoClicked().getInventory().setChestplate(DC);
-			e.getWhoClicked().getInventory().setLeggings(DL);
-			e.getWhoClicked().getInventory().setBoots(DB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Diamond Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-			
-		}
-		if(e.getCurrentItem().getType().equals(Material.DIAMOND_CHESTPLATE)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(DH);
-			e.getWhoClicked().getInventory().setChestplate(DC);
-			e.getWhoClicked().getInventory().setLeggings(DL);
-			e.getWhoClicked().getInventory().setBoots(DB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Diamond Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-		}
-		if(e.getCurrentItem().getType().equals(Material.DIAMOND_LEGGINGS)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(DH);
-			e.getWhoClicked().getInventory().setChestplate(DC);
-			e.getWhoClicked().getInventory().setLeggings(DL);
-			e.getWhoClicked().getInventory().setBoots(DB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Diamond Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-		}
-		if(e.getCurrentItem().getType().equals(Material.DIAMOND_BOOTS)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(DH);
-			e.getWhoClicked().getInventory().setChestplate(DC);
-			e.getWhoClicked().getInventory().setLeggings(DL);
-			e.getWhoClicked().getInventory().setBoots(DB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §9Diamond Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-		}
-			
-			
-		if(e.getCurrentItem().getType().equals(Material.CHAINMAIL_HELMET)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(CH);
-			e.getWhoClicked().getInventory().setChestplate(CC);
-			e.getWhoClicked().getInventory().setLeggings(CL);
-			e.getWhoClicked().getInventory().setBoots(CB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §7Chainmail Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-			}
-		if(e.getCurrentItem().getType().equals(Material.CHAINMAIL_CHESTPLATE)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(CH);
-			e.getWhoClicked().getInventory().setChestplate(CC);
-			e.getWhoClicked().getInventory().setLeggings(CL);
-			e.getWhoClicked().getInventory().setBoots(CB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §7Chainmail Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-			}
-			if(e.getCurrentItem().getType().equals(Material.CHAINMAIL_LEGGINGS)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(CH);
-			e.getWhoClicked().getInventory().setChestplate(CC);
-			e.getWhoClicked().getInventory().setLeggings(CL);
-			e.getWhoClicked().getInventory().setBoots(CB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §7Chainmail Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-			}
-		if(e.getCurrentItem().getType().equals(Material.CHAINMAIL_BOOTS)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(CH);
-			e.getWhoClicked().getInventory().setChestplate(CC);
-			e.getWhoClicked().getInventory().setLeggings(CL);
-			e.getWhoClicked().getInventory().setBoots(CB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §7Chainmail Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-			}
-			
-		if(e.getCurrentItem().getType().equals(Material.GOLD_HELMET)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(GH);
-			e.getWhoClicked().getInventory().setChestplate(GC);
-			e.getWhoClicked().getInventory().setLeggings(GL);
-			e.getWhoClicked().getInventory().setBoots(GB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §eGold Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-			}
-			
-		if(e.getCurrentItem().getType().equals(Material.GOLD_CHESTPLATE)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(GH);
-			e.getWhoClicked().getInventory().setChestplate(GC);
-			e.getWhoClicked().getInventory().setLeggings(GL);
-			e.getWhoClicked().getInventory().setBoots(GB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §eGold Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-			}
-		if(e.getCurrentItem().getType().equals(Material.GOLD_LEGGINGS)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(GH);
-			e.getWhoClicked().getInventory().setChestplate(GC);
-			e.getWhoClicked().getInventory().setLeggings(GL);
-			e.getWhoClicked().getInventory().setBoots(GB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §eGold Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-			}
-		if(e.getCurrentItem().getType().equals(Material.GOLD_BOOTS)){
-			e.setCancelled(true);
-			e.getWhoClicked().getInventory().setHelmet(GH);
-			e.getWhoClicked().getInventory().setChestplate(GC);
-			e.getWhoClicked().getInventory().setLeggings(GL);
-			e.getWhoClicked().getInventory().setBoots(GB);
-			p.closeInventory();
-			p.sendMessage("§6You are now using §eGold Armor");
-			p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
-			}
-		
-		if(e.getCurrentItem().getType().equals(Material.INK_SACK)){
-			e.setCancelled(true);
-			p.sendMessage("§6This feature is still in development! Please check @AppleTechOnline For updates.");
-			p.closeInventory();
-			}
-			
-		
-		if(e.getCurrentItem().getType().equals(Material.WOOL)){
-			e.setCancelled(true);
-			e.getWhoClicked().openInventory(Stuff.Lc);
-		}
-
 	
-			
-		
-			
-			
-
-		
-		
-	}
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e){
-		if(e.getPlayer().hasPermission("Apple.Armor")){
+		if(!e.getPlayer().hasPermission("Apple.Armor")) {
+		    return null;
+        }
+        
 		ItemStack Is = new ItemStack(Material.IRON_INGOT);
 		ItemMeta Im = Is.getItemMeta();
 		Im.setDisplayName("§bArmor!");
@@ -550,14 +395,14 @@ public class Armor extends JavaPlugin implements Listener {
 		Is.setItemMeta(Im);
 		e.getPlayer().getInventory().clear();
 		e.getPlayer().getInventory().addItem(new ItemStack(Is));
-		}
 	}
+	
 	@EventHandler(priority=EventPriority.HIGH)
 	public void onPlayerUse(PlayerInteractEvent event){
 		
 		Player p = event.getPlayer();
-		if(p.getItemInHand().getType() == Material.IRON_INGOT){
+		if(p.getItemInHand().getType() == Material.IRON_INGOT) {
 	    	p.chat("/armor");
-	}
-}
+        }
+    }
 }
