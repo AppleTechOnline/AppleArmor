@@ -178,20 +178,84 @@ public class Armor extends JavaPlugin implements Listener {
 		a21m.setDisplayName("§4Close this menu!");
 		a21.setItemMeta(a21m);
 		
-		ItemStack a22 = new ItemStack(Material.INK_SACK, 1, (short) DyeColor.RED.getData());
+		ItemStack a22 = new ItemStack(Material.INK_SACK, 1, (short) DyeColor.CYAN.getData());
 		ItemMeta a22m = a22.getItemMeta();
 		a22m.setDisplayName("§aLeather Armor Colors!");
 		a22m.setLore(Arrays.asList("§4Coming Soon"));
 		a22.setItemMeta(a22m);
 		
+		ItemStack a23 = new ItemStack(Material.DIAMOND);
+		ItemMeta a23m = a23.getItemMeta();
+		a23m.setDisplayName("§bDiamonds to you!");
+		a23m.setLore(Arrays.asList("§4Donators and stuff!"));
+		a23.setItemMeta(a23m);
+		
+		
+		ItemStack a24 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) DyeColor.CYAN.getData());
+		ItemMeta a24m = a24.getItemMeta();
+		a24m.setLore(Arrays.asList("§4Donators and stuff!"));
+		a24m.setDisplayName("§bBecause Im happy!");
+		a24.setItemMeta(a24m);
+		
+		ItemStack a25 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) DyeColor.WHITE.getData());
+		ItemMeta a25m = a25.getItemMeta();
+		a25m.setDisplayName("§bBecause Im happy!");
+		a25.setItemMeta(a25m);
+		
+		ItemStack a26 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) DyeColor.BLUE.getData());
+		ItemMeta a26m = a26.getItemMeta();
+		a26m.setDisplayName("§bPizza!!");
+		a26.setItemMeta(a26m);
+		
+		ItemStack a27 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) DyeColor.LIME.getData());
+		ItemMeta a27m = a27.getItemMeta();
+		a27m.setDisplayName("§aNOODLES!!");
+		a27.setItemMeta(a27m);
 		
 		
 		
 		
 		
 		
-		armor.setItem(44, a21);
-		armor.setItem(43, a22);
+		armor.setItem(44, a24);
+		armor.setItem(43, a26);
+		armor.setItem(42, a27);
+		
+		
+		armor.setItem(41, a21);
+		armor.setItem(40, a22);
+		armor.setItem(39, a23);
+		
+		
+		armor.setItem(38, a27);
+		armor.setItem(37, a26);
+		armor.setItem(36, a24);
+		
+		
+		armor.setItem(35, a25);
+		armor.setItem(34, a25);
+		armor.setItem(33, a25);
+		armor.setItem(29, a25);
+		armor.setItem(28, a25);
+		armor.setItem(27, a25);
+		armor.setItem(26, a24);
+		armor.setItem(25, a24);
+		armor.setItem(24, a24);
+		armor.setItem(19, a24);
+		armor.setItem(18, a24);
+		armor.setItem(17, a25);
+		armor.setItem(16, a25);
+		armor.setItem(10, a25);
+		armor.setItem(9, a25);
+		
+		armor.setItem(7, a24);
+		armor.setItem(8, a24);
+		armor.setItem(5, a24);
+		
+		armor.setItem(0, a24);
+		armor.setItem(1, a24);		
+		
+		
 		
 		
 		
@@ -528,8 +592,17 @@ public class Armor extends JavaPlugin implements Listener {
 		
 		if(e.getCurrentItem().getType().equals(Material.WOOL)){
 			e.setCancelled(true);
-			e.getWhoClicked().openInventory(Stuff.Lc);
+			p.closeInventory();
 		}
+		if(e.getCurrentItem().getType().equals(Material.DIAMOND)){
+			e.setCancelled(true);
+			p.openInventory(Donators.D);
+		}
+		if(e.getCurrentItem().getType().equals(Material.STAINED_GLASS_PANE)){
+			e.setCancelled(true);
+			p.closeInventory();
+		}
+
 
 	
 			
@@ -546,7 +619,7 @@ public class Armor extends JavaPlugin implements Listener {
 		ItemStack Is = new ItemStack(Material.IRON_INGOT);
 		ItemMeta Im = Is.getItemMeta();
 		Im.setDisplayName("§bArmor!");
-		Im.setLore(Arrays.asList("§6Feature of the day:", "§e"));
+		Im.setLore(Arrays.asList("§6BASED OF RANDOM WODRDS!!!!"));
 		Is.setItemMeta(Im);
 		e.getPlayer().getInventory().clear();
 		e.getPlayer().getInventory().addItem(new ItemStack(Is));
